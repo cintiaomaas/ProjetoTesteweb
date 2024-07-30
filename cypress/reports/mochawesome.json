@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-07-30T22:55:05.966Z",
+    "end": "2024-07-30T22:55:11.291Z",
+    "duration": 5325,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "33c1b0a6-ed53-4571-92bb-3b1e89f6faaa",
+      "title": "",
+      "fullFile": "cypress\\e2e\\avaliacaoWebTest.cy.js",
+      "file": "cypress\\e2e\\avaliacaoWebTest.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fc9385f8-958f-4793-a249-b1cbdae1e494",
+          "title": "Avaliação projeto de testeE2E",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Capturar dados exibidos na tela e valida objeto com id 6",
+              "fullTitle": "Avaliação projeto de testeE2E Capturar dados exibidos na tela e valida objeto com id 6",
+              "timedOut": null,
+              "duration": 5283,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/');\ncy.get('a[href=\"/guide\"]').contains('Guide').click();\ncy.get('a[href=\"/albums/1/photos\"]').should('be.visible').then($link => {\n  const href = $link.attr('href');\n  cy.request(href).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body).to.be.an('array');\n    cy.writeFile(jsonFilePath, response.body);\n  });\n});\ncy.readFile(jsonFilePath).then(data => {\n  const item = data.find(obj => obj.id === 6);\n  expect(item, 'Objeto com id 6 deve existir').to.be.not.undefined;\n  expect(item).to.deep.equal(expectedData);\n});",
+              "err": {},
+              "uuid": "72debf3d-eab0-4bbd-8fea-1e589f4f45c3",
+              "parentUUID": "fc9385f8-958f-4793-a249-b1cbdae1e494",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "72debf3d-eab0-4bbd-8fea-1e589f4f45c3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5283,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
